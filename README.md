@@ -24,3 +24,11 @@ LBP Project
     ¦   useful_methods.py
 ```
 
+## DATASET: EXTENDED YALE B DATASET
+
+The extended Yale Face Database B contains 16128 images of 28 human subjects under 9 poses and 64 illumination conditions.
+
+The images in the dataset are stored in PGM files. PGM (Portable Gray Map) files store grayscale 2D images.
+
+It can be accessed here: http://vision.ucsd.edu/~iskwak/ExtYaleDatabase/ExtYaleB.html
+
