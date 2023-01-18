@@ -8,6 +8,7 @@ The following project uses open-source tools and libraries to create a facial re
 * Numpy
 * Pandas
 * Matplotlib
+* Pillow (Fork of the python imaging library)
 
 ## PROJECT STRUCTURE
 ```
