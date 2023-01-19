@@ -1,6 +1,22 @@
 # LBP-PROJECT
 This project was conducted for the course Biometric Systems at Sapienza University. The aim was to create a facial recognition system using the local binary pattern operator presented by Ojala, Pietikainen, and Maenpaa in 2002.
 
+## TABLE OF CONTENTS
+
+[DESCRIPTION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#description)
+
+[PROJECT STRUCTURE](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#project-structure)
+
+[DATASETS](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#datasets)
+
+[EXTENDED YALE B DATASET](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#extended-yale-b-dataset)  
+
+[RUN PROGRAM](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#run-program)
+
+[EVALUATION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#evaluation)
+
+[REFERENCES](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#references)
+
 ## DESCRIPTION
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
 * Scikit-learn 
