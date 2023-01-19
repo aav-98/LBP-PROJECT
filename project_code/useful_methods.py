@@ -2,15 +2,18 @@
 project:    LBP-PROJECT
 author:     Andreas Askim Vatne
 version:    1.0
-date:       18-01-2023
+date:       19-01-2023
 github:     https://github.com/aav-98/LBP-PROJECT
 '''
 
+#import os to be able to traverse directories and files in operating system
 import os
-import cv2
 
+#import pandas to organize and extract information from datasets
 import pandas as pd
-from matplotlib import pyplot as plt
+
+from PIL import Image
+import numpy as np
 
 def getDataset(path_segment):   #returns the dataset partitioned into relevant arrays
 
@@ -32,7 +35,10 @@ def getDataset(path_segment):   #returns the dataset partitioned into relevant a
 
     return imageseries
 
-def convert_to_grayscale(img):    #converts the input image to grayscale using the OpenCV library
-    gs_image = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    plt.imshow(gs_image)
-    return gs_image
+def saveLBPImages(imageSeries:pd.DataFrame, path_segment):
+    for index in imageSeries.index:
+        lbp_image = imageSeries["lbp_images"][index]
+        print(os.getcwd())
+        path = os.getcwd() + "/" + path_segment + "/" + imageSeries["image_labels"][index] + ".jpg"
+        img = Image.fromarray(lbp_image.astype("uint8"), 'L')
+        img.save(path)
