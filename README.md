@@ -3,19 +3,19 @@ This project was conducted for the course Biometric Systems at Sapienza Universi
 
 ## TABLE OF CONTENTS
 
-[DESCRIPTION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#description)
+##### [DESCRIPTION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#description)
 
-[PROJECT STRUCTURE](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#project-structure)
+##### [PROJECT STRUCTURE](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#project-structure)
 
-[DATASETS](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#datasets)
+##### [DATASETS](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#datasets)
 
-[EXTENDED YALE B DATASET](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#extended-yale-b-dataset)  
+##### [EXTENDED YALE B DATASET](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#extended-yale-b-dataset)  
 
-[RUN PROGRAM](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#run-program)
+##### [RUN PROGRAM](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#run-program)
 
-[EVALUATION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#evaluation)
+##### [EVALUATION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#evaluation)
 
-[REFERENCES](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#references)
+##### [REFERENCES](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#references)
 
 ## DESCRIPTION
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
@@ -60,6 +60,16 @@ To run the program, provide the necessary arguments in the command line:
 ```
 
 ## EVALUATION
+
+It is of importance to note the hardware and software used in the experiments to ensure the reproducability and comparative-nature of the results.
+
+##### HARDWARE-SPECIFICATIONS
+Processor: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz   1.50 GHz
+RAM:       16GB
+
+##### SOFTWARE-SPECIFICATIONS
+
+Operating system: Windows 11 Home, 64-bit operating system, x64-based processer
 
 ## REFERENCES
 
