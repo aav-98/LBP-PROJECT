@@ -27,7 +27,7 @@ This project particulary focused on evaluating the performance when providing di
 
 The expanded upon version of the LBP-operater allows us to deal with textures at different scales.
 
-The project took a local-feature based approach to feature recognition. It did so by dividing the image into a specified number of windows and building several local descriptions before concatenating them into a global description.
+The project took a local-feature based approach to facial recognition. It did so by dividing the image into a specified number of windows (local regions) and building several local descriptions before concatenating them into a global description.
 
 ## TOOLS AND LIBRARIES
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
