@@ -92,7 +92,7 @@ Operating system: Windows 11 Home, 64-bit operating system, x64-based processer
 
 ##### EXPERIMENTAL ANALYSIS
 
-- Recognition rates at rank 1 (identification mode)
+- Recognition rate (Cumulative Match Score (CMS) at rank 1)
 - Mean recognition rate at a 95% confidence interval
 - Computational efficiency (recorded execution time)
 
