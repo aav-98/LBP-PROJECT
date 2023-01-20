@@ -23,7 +23,9 @@ The research in the article above is based on the local binary pattern operator 
 
 ## DESCRIPTION
 
-This project particulary focused on evaluating the performance when providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allows any radius and number of sampling points to provided as input.
+This project particulary focused on evaluating the performance when providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allowed any radius and number of sampling points to provided as input.
+
+The expanded upon version of the LBP-operater allows us to deal with textures at different scales.
 
 ## TOOLS AND LIBRARIES
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
