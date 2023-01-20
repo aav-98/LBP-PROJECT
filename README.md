@@ -1,11 +1,13 @@
 # LBP-PROJECT
 This project was conducted for the course Biometric Systems at Sapienza Università di Roma. The aim was to evaluate the performance of a facial recognition system using local binary pattern features to represent face images. This approach was first presented by Ahonen T, Hadid A, Pietikäinen M. in the article **Face description with local binary patterns: application to face recognition**[^1], published in volume 28 of the journal *IEEE Transactions on Pattern Analysis and Machine Intelligence*.
 
-The research in the article above is based on the local binary pattern operator presented by Ojala, Pietikainen, and Maenpaa in 2002, and from the research conducted in the texture analysis research field up until the date of publication. 
+The research in the article above is based on the local binary pattern operator first presented by Ojala, Pietikainen, and Maenpaa in 2002, and from the research conducted in the texture analysis research field up until the date of publication. 
 
 ## TABLE OF CONTENTS
 
 ##### [DESCRIPTION](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#description)
+
+##### [TOOLS AND LIBRARIES](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#tools-and-libraries)
 
 ##### [PROJECT STRUCTURE](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#project-structure)
 
@@ -20,6 +22,10 @@ The research in the article above is based on the local binary pattern operator 
 ##### [REFERENCES](https://github.com/aav-98/LBP-PROJECT/edit/main/README.md#references)
 
 ## DESCRIPTION
+
+This project particulary focused on evaluating the performance when providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allows any radius and number of sampling points to provided as input.
+
+## TOOLS AND LIBRARIES
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
 * Scikit-learn 
 * OpenCV
