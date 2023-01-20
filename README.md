@@ -30,7 +30,9 @@ This project focused on evaluating the performance of the LBP-based algorithm un
 * Distance measure for nearest neighbour-classfication
 * Weights Wj for weighted X^2 statistic
 
-Particular focus on was given to providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allowed any radius and number of sampling points to provided as input. This expanded upon version of the LBP-operater allowed us to deal with textures at different scales.
+Particular focus on was given to providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allowed any radius and number of sampling points to provided as input. This expanded upon version of the LBP-operater allowed us to deal with textures at different scales. 
+
+In the approach adopted we also extended the LBP operator by making it rotation invariant. In this case, the LBP-operator therefore only uses uniform patterns, meaning only those patterns that at most contain two bitwise transitions from 0 to 1.
 
 The project took a local-feature based approach to facial recognition. It did so by dividing the image into a specified number of windows (local regions) and building several local descriptions (histograms) before concatenating them into a global description (a single spatially enhanced histogram). 
 
