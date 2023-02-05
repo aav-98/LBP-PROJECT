@@ -8,6 +8,7 @@ github:     https://github.com/aav-98/LBP-PROJECT
 
 #import os to be able to traverse directories and files in operating system
 import os
+from matplotlib import pyplot as plt
 
 #import pandas to organize and extract information from datasets
 import pandas as pd
@@ -38,7 +39,24 @@ def getDataset(path_segment):   #returns the dataset partitioned into relevant a
 def saveLBPImages(imageSeries:pd.DataFrame, path_segment):
     for index in imageSeries.index:
         lbp_image = imageSeries["lbp_images"][index]
-        print(os.getcwd())
         path = os.getcwd() + "/" + path_segment + "/" + imageSeries["image_labels"][index] + ".jpg"
         img = Image.fromarray(lbp_image.astype("uint8"), 'L')
         img.save(path)
+
+#split the lbp image into tiles
+def split_lbp_image(lbp_image):
+    #image size is 168 * 192 (not on current dataset)
+    M = lbp_image.shape[0]//4  #shape[0] gives image height
+    N = lbp_image.shape[1]//4   #shape[1] gives image width
+    tiles = [lbp_image[x:x+M,y:y+N] for x in range(0,lbp_image.shape[0],M) for y in range(0,lbp_image.shape[1],N)]
+    return tiles
+
+def plot_histogram(lbp_histograms):
+        for histogram in lbp_histograms:
+            fig, ax = plt.subplots(figsize =(10, 7))
+            ax.hist(histogram, bins=(len(histogram)+1))
+            plt.xlabel("Bins")
+            plt.ylabel("Frequency")
+            plt.title('LBP histogram')
+            # Show plot
+            plt.show()
