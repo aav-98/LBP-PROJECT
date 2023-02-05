@@ -27,7 +27,7 @@ This project focused on evaluating the performance of the LBP-based algorithm un
 
 * Type of LBP-operator
 * Division of image into local regions
-* Distance measure for nearest neighbour-classfication
+* Distance measure for nearest neighbour classification
 
 Particular focus on was given to providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allowed any radius and number of sampling points to provided as input. This expanded upon version of the LBP-operater allowed us to deal with textures at different scales. 
 
@@ -50,8 +50,7 @@ LBP Project
 ¦   main.py
 ¦   
 +---datasets
-¦   +---test
-¦   +---training
+¦   +---ExtendedYaleB
 ¦       
 +---project_code
     ¦   lbp.py
