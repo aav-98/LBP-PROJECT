@@ -38,6 +38,7 @@ The project took a local-feature based approach to facial recognition. It did so
 ## TOOLS AND LIBRARIES
 The following project uses open-source tools and libraries to create a facial recognition system. This includes:
 * Scikit-learn 
+* SciPy
 * OpenCV
 * Numpy
 * Pandas
