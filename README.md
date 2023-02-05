@@ -28,7 +28,6 @@ This project focused on evaluating the performance of the LBP-based algorithm un
 * Type of LBP-operator
 * Division of image into local regions
 * Distance measure for nearest neighbour-classfication
-* Weights Wj for weighted X^2 statistic
 
 Particular focus on was given to providing different inputs to the parameters of the local neighbourhood (a set of sampling points evenly spaced on a circle centered at the pixel to be labeled). This definition allowed any radius and number of sampling points to provided as input. This expanded upon version of the LBP-operater allowed us to deal with textures at different scales. 
 
@@ -73,9 +72,13 @@ It can be accessed here: http://vision.ucsd.edu/~iskwak/ExtYaleDatabase/ExtYaleB
 To run the program, provide the necessary arguments in the command line:
 
 ```
--d --dataset [help: path to the dataset images]
--r --radius [help: specify the radius to be used for lbp-descriptor]
--n --neighbours [help: specify the number of interval points for lbp-descriptor]
+-d  --dataset [help: path to the dataset images]
+-r  --radius [help: specify the radius to be used for lbp-descriptor]
+-p  --sampling_points [help: specify the number of interval points for lbp-descriptor]
+-s  --save_images [help: select whether or not lbp_image should be saved]
+-hq --hist_equal [help: select whether or not to apply histogram equalization to images]
+-m  --method [help: method to determine the pattern, select between default, ror, uniform, nri_uniform, and var]
+-t  --training [help: select whether or not to train ML model]
 ```
 
 ## EVALUATION
@@ -93,6 +96,7 @@ Operating system: Windows 11 Home, 64-bit operating system, x64-based processer
 ##### EXPERIMENTAL ANALYSIS
 
 - Recognition rate (Cumulative Match Score (CMS) at rank 1)
+- Cumulative Match Curve (Probability of Identification)
 - Mean recognition rate at a 95% confidence interval
 - Computational efficiency (recorded execution time)
 
