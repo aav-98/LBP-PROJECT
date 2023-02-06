@@ -2,7 +2,7 @@
 project:    LBP-PROJECT
 author:     Andreas Askim Vatne
 version:    1.0
-date:       19-01-2023
+date:       05-02-2023
 github:     https://github.com/aav-98/LBP-PROJECT
 '''
 
