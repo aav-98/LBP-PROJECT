@@ -48,6 +48,8 @@ The following project uses open-source tools and libraries to create a facial re
 LBP Project
 ¦   LICENSE
 ¦   main.py
+¦ 
++---cmc_graphs
 ¦   
 +---datasets
 ¦   +---ExtendedYaleB
@@ -79,6 +81,8 @@ To run the program, provide the necessary arguments in the command line:
 -hq --hist_equal [help: select whether or not to apply histogram equalization to images]
 -m  --method [help: method to determine the pattern, select between default, ror, uniform, nri_uniform, and var]
 -t  --training [help: select whether or not to train ML model]
+-he --height [help: select the number of image splits on the vertical side of the image]
+-w --width [help: select the number of image splits on the horizontal side of the image]
 ```
 
 ## EVALUATION
@@ -96,8 +100,8 @@ Operating system: Windows 11 Home, 64-bit operating system, x64-based processer
 ##### EXPERIMENTAL ANALYSIS
 
 - Recognition rate (Cumulative Match Score (CMS) at rank 1)
-- Cumulative Match Curve (Probability of Identification)
-- Mean recognition rate at a 95% confidence interval
+- Cumulative Match Scores
+- Cumulative Match Characteristic Curve (Probability of Identification)
 - Computational efficiency (recorded execution time)
 
 ## REFERENCES
