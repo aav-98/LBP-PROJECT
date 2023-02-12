@@ -48,6 +48,7 @@ The following project uses open-source tools and libraries to create a facial re
 LBP Project
 ¦   LICENSE
 ¦   main.py
+¦   haarcascade_frontalface_default.xml
 ¦ 
 +---cmc_graphs
 ¦   
