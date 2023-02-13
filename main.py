@@ -2,7 +2,7 @@
 project:    LBP-PROJECT
 author:     Andreas Askim Vatne
 version:    1.0
-date:       05-02-2023
+date:       12-02-2023
 github:     https://github.com/aav-98/LBP-PROJECT
 '''
 
@@ -30,6 +30,7 @@ from scipy.spatial import distance_matrix
 import matplotlib.pyplot as plt
 
 import time
+import os
 
 def main():
 
@@ -42,6 +43,8 @@ def main():
     ap.add_argument("-hq", "--hist_equal", dest="histeq", default=False, help="select whether or not to apply histogram equalization to images")
     ap.add_argument("-m", "--method", dest="method", default=False, help="method to determine the pattern, select between default, ror, uniform, nri_uniform, and var")
     ap.add_argument("-t", "--training", dest="training", default=False, help="select whether or not to train ML model")
+    ap.add_argument("-he", "--height", dest="height", default=4, type=int, help="select the number of image splits on the vertical side of the image")
+    ap.add_argument("-w", "--width", dest="width", default=4, type=int, help="select the number of image splits on the horizontal side of the image")
  
     arguments = ap.parse_args()
 
@@ -59,15 +62,13 @@ def main():
     imageseries["lbp_images"] = lbp_images #add lbp-images to dataframe
 
     #save LBP images in dataset-folder if argument is given to -s
-    if (arguments.save and arguments.method == "default"):
+    #if (arguments.save and arguments.method == "default"):
+    if (arguments.save):
         um.saveLBPImages(imageseries, arguments.dataset)
 
-    print("Start calculating lbp-histograms: ", "\n")
+    print("Start calculating lbp-histograms", "\n")
     #calculate lbp-histograms
-    lbp_histograms = lbp_descriptor.getHistograms(lbp_images)
-
-    #view lbp-histograms
-    #um.plot_histogram(lbp_histograms)
+    lbp_histograms = lbp_descriptor.getHistograms(lbp_images, arguments.height, arguments.width)
 
     X = lbp_histograms #feature-vectors
     y = np.asarray(imageseries["class_labels"]) #class labels
@@ -110,7 +111,7 @@ def main():
     cumulative_match_curve_scores = um.cumulative_match_curve_scores(matches_at_every_rank, len(y_test))
     print(cumulative_match_curve_scores, "\n")
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("--- %s seconds ---" % (time.time() - start_time), "\n")
 
     #using matplotlib to visually representent the recognition rate and the cumulative match curve
     plt.plot([1], [recog_rate_at_rank_1], 'ro')
@@ -118,6 +119,10 @@ def main():
     plt.xlabel('Rank')
     plt.ylabel('Probability of Identification')
     plt.title('Recognition Rate at Rank 1 and Cumulative Match Curve')
+    #save the cmc graph in a separate folder
+    filename = (os.getcwd() + "/cmc_graphs/" + "LBP_" + str(int(arguments.radius)) + "_" 
+    + str(arguments.samplingpoints) + "_" + str(arguments.height) + "_" + str(arguments.width) +".png")
+    plt.savefig(filename, format="png", dpi=300)
     plt.show()
 
     print("Recognition rate: ", recog_rate_at_rank_1, "\n")

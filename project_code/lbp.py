@@ -2,7 +2,7 @@
 project:    LBP-PROJECT
 author:     Andreas Askim Vatne
 version:    1.0
-date:       05-02-2023
+date:       12-02-2023
 github:     https://github.com/aav-98/LBP-PROJECT
 '''
 
@@ -26,27 +26,28 @@ class LBP:
             image = cv2.cvtColor(cv2.imread(path), cv2.COLOR_RGB2GRAY)  #converts the input image to grayscale using the OpenCV library
             if histeq:
                 image = cv2.equalizeHist(image)
+            #detect face and normalize to a certian size
             lbp_image = feature.local_binary_pattern(image, self.intervalpoints, self.radius, method=method)
             lbp_images.append(lbp_image)
         return lbp_images
 
-    def getHistograms(self, lbp_images):
+    def getHistograms(self, lbp_images, height, width):
         lbp_histograms = []
         for lbp_image in lbp_images:
-            hist = self.histogram(lbp_image)
+            hist = self.histogram(lbp_image, height, width)
             lbp_histograms.append(hist)
         return lbp_histograms
 
-    def histogram(self, lbp_image):
+    def histogram(self, lbp_image, height, width):
         hist = []
         tile_histograms = []
-        lbp_image_tiles = um.split_lbp_image(lbp_image)
+        lbp_image_tiles = um.split_lbp_image(lbp_image, height, width)
         for lbp_tile in lbp_image_tiles:
             n_bins = int(lbp_image.max() + 1) #number of bins in histogram
             tile_hist, _ = np.histogram(lbp_tile.ravel(), density=True, bins=n_bins, range=(0, n_bins)) #ravel to convert lbp 2D-array to 1D-array
             # normalize the histogram, such that it sums to one
-            #tile_hist = tile_hist.astype("float")
-            #tile_hist /= tile_hist.sum()
+            tile_hist = tile_hist.astype("float")
+            tile_hist /= tile_hist.sum()
             tile_histograms.append(tile_hist)
         hist = np.concatenate(tile_histograms)
         return hist

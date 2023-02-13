@@ -2,7 +2,7 @@
 project:    LBP-PROJECT
 author:     Andreas Askim Vatne
 version:    1.0
-date:       05-02-2023
+date:       12-02-2023
 github:     https://github.com/aav-98/LBP-PROJECT
 '''
 
@@ -15,6 +15,7 @@ import pandas as pd
 
 from PIL import Image
 import numpy as np
+import cv2     #open-source computer vision library
 
 def getDataset(path_segment):   #returns the dataset partitioned into relevant arrays and placed into dataframe
 
@@ -24,10 +25,17 @@ def getDataset(path_segment):   #returns the dataset partitioned into relevant a
 
     dataset_path = os.getcwd() + "/" + path_segment + "/"   #creates a path to the required directory containing requested dataset images
 
+    haar_cascade_face = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
     for class_directory in os.listdir(dataset_path):
         class_images = os.listdir(os.path.join(dataset_path, class_directory))
         for image in class_images:
-            image_paths.append(os.path.join(dataset_path, class_directory, image))
+            image_path = os.path.join(dataset_path, class_directory, image)
+            faces_rect, image_mat = detect_faces(haar_cascade_face, image_path)
+            if len(faces_rect)!=1:
+               continue  
+            cropped_image, new_image_path = crop(image_mat, faces_rect, image_path)
+            image_paths.append(new_image_path)
             image_labels.append(image)
             class_labels.append(class_directory)
 
@@ -40,27 +48,18 @@ def getDataset(path_segment):   #returns the dataset partitioned into relevant a
 def saveLBPImages(imageSeries:pd.DataFrame, path_segment):
     for index in imageSeries.index:
         lbp_image = imageSeries["lbp_images"][index]
-        path = os.getcwd() + "/" + path_segment + "/" + imageSeries["image_labels"][index] + ".jpg"
+        image_label = imageSeries["image_labels"][index]
+        path = os.getcwd() + "/" + path_segment + "/" + image_label + ".jpg"
         img = Image.fromarray(lbp_image.astype("uint8"), 'L')
         img.save(path)
 
 #split the lbp image into tiles
-def split_lbp_image(lbp_image):
-    #image size is 168 * 192 (not on current dataset)
-    M = lbp_image.shape[0]//4  #shape[0] gives image height
-    N = lbp_image.shape[1]//4   #shape[1] gives image width
+def split_lbp_image(lbp_image, height, width):
+    #image size is 168 * 192
+    M = lbp_image.shape[0]//height #shape[0] gives image height
+    N = lbp_image.shape[1]//width  #shape[1] gives image width
     tiles = [lbp_image[x:x+M,y:y+N] for x in range(0,lbp_image.shape[0],M) for y in range(0,lbp_image.shape[1],N)]
     return tiles
-
-def plot_histogram(lbp_histograms):
-        for histogram in lbp_histograms:
-            fig, ax = plt.subplots(figsize =(10, 7))
-            ax.hist(histogram, bins=(len(histogram)+1))
-            plt.xlabel("Bins")
-            plt.ylabel("Frequency")
-            plt.title('LBP histogram')
-            # Show plot
-            plt.show()
 
 #calculate the recogntion rate
 def calculate_recognition_rate_at_rank_1(distance_matrix, training_set_class_labels, testing_set_class_labels):
@@ -91,3 +90,21 @@ def cumulative_match_curve_scores(matches_at_every_rank, nr_instances):
     for rank in range(1, len(matches_at_every_rank) + 1):
         cumulative_match_curve_scores.append(sum(matches_at_every_rank[:rank]) / nr_instances) #divides the number of correctly identified matches at a rank with the nr of test images
     return cumulative_match_curve_scores
+
+def detect_faces(cascade, image, scaleFactor = 1.1):
+    image_mat = cv2.imread(image).copy()
+
+    # Applying the haar classifier to detect faces
+    faces = cascade.detectMultiScale(image_mat, scaleFactor=scaleFactor, minNeighbors=5)
+
+    return faces, image_mat
+    
+def crop(image, faces, image_path, k=0):
+    for (x, y, w, h) in faces:
+        cropped_image = image[y:y + h, x:x + w]
+        # comment the two following lines if you want to stop saving the crops
+        cropped_image_normalized = cv2.resize(cropped_image, (168, 192))
+        cropped_image_path = image_path+str(k)+'.jpg'
+        cv2.imwrite(cropped_image_path, cropped_image_normalized)
+        k += 1
+    return cropped_image, cropped_image_path
